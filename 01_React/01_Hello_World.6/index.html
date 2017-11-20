@@ -14,18 +14,40 @@
 
     <script type="text/babel">
         class Hello extends React.Component {
+            constructor() {
+                super();
+
+                this.state = {
+                    name: ''
+                };
+
+                this.handleChangeName = this.handleChangeName.bind(this);
+            }
+
+            handleChangeName(e) {
+                this.setState({ name: e.target.value });
+            }
+
             render() {
+                const { name } = this.state;
+
                 return (
                     <div>
-                        <h1>Hello, {this.props.name}!</h1>
-                        <img src={this.props.avatar} alt="this.props.name" />
+                        <input
+                            type="text"
+                            placeholder="Enter your name..."
+                            value={name}
+                            onChange={this.handleChangeName}
+                        />
+
+                        <h1>Hello, {name || 'stranger'}!</h1>
                     </div>
                 );
             }
         }
 
         ReactDOM.render(
-            <Hello name="Dan" avatar="https://github.com/gaearon.png" />,
+            <Hello />,
             document.getElementById('root')
         );
     </script>

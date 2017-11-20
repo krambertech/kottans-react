@@ -12,20 +12,18 @@
 <body>
     <div id="root"></div>
 
-    <script type="text/babel">
+    <script>
         class Hello extends React.Component {
             render() {
-                return (
-                    <div>
-                        <h1>Hello, {this.props.name}!</h1>
-                        <img src={this.props.avatar} alt="this.props.name" />
-                    </div>
+                return React.createElement('div', {},
+                    React.createElement('h1', {}, `Hello, ${this.props.name}!`),
+                    React.createElement('img', { src: this.props.avatar , alt: this.props.name })
                 );
             }
         }
 
         ReactDOM.render(
-            <Hello name="Dan" avatar="https://github.com/gaearon.png" />,
+            React.createElement(Hello, { name: 'Dan', avatar: 'https://github.com/gaearon.png' }),
             document.getElementById('root')
         );
     </script>
