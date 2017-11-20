@@ -1,2 +1,6 @@
-# kottans-react
-Code from React/Redux lectures and workshop for Kottans
+## Initial setup
+
+```
+npm install -g create-react-app
+```
+
