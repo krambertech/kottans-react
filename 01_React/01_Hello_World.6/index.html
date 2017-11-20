@@ -8,46 +8,167 @@
     <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <style>
+        .app {
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .profile {
+            border: 1px solid #eaeaea;
+            display: flex;
+            padding: 8px;
+            margin-bottom: 8px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+        }
+
+        .profile-info {
+            padding-left: 16px;
+        }
+
+        .profile-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+    </style>
 </head>
 <body>
     <div id="root"></div>
 
     <script type="text/babel">
-        class Hello extends React.Component {
+        const profiles = [
+            {"id":"53331f585e986b0712f00000","username":"listochkin","displayName":"Андрей Листочкин (Andrey Listochkin)","url":"/listochkin","avatarUrl":"https://avatars-01.gitter.im/gh/uv/4/listochkin","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/405222?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/405222?v=4&s=128","role":"admin","v":423,"gv":"4"},
+            {"id":"5346c0fb5e986b0712f02d68","username":"andrIvash","displayName":"Andriy Ivashchenko","url":"/andrIvash","avatarUrl":"https://avatars-03.gitter.im/gh/uv/4/andrIvash","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/6473951?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/6473951?v=4&s=128","v":8,"gv":"4"},
+            {"id":"5419b11e163965c9bc205250","username":"SilentImp","displayName":"SilentImp","url":"/SilentImp","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/SilentImp","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/217308?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/217308?v=4&s=128","v":18,"gv":"4"},
+            {"id":"5478889fdb8155e6700d9096","username":"lavriv92","displayName":"Ivan Lavriv","url":"/lavriv92","avatarUrl":"https://avatars-01.gitter.im/gh/uv/4/lavriv92","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/2587946?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/2587946?v=4&s=128","role":"admin","v":9,"gv":"4"},
+            {"id":"5479c5a9db8155e6700d93d8","username":"suchov","displayName":"Artem","url":"/suchov","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/suchov","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/1478985?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/1478985?v=4&s=128","role":"admin","v":120,"gv":"4"},
+            {"id":"5479ccdbdb8155e6700d9415","username":"bluebirrrrd","displayName":"Anna Kurylo","url":"/bluebirrrrd","avatarUrl":"https://avatars-01.gitter.im/gh/uv/4/bluebirrrrd","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/7498906?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/7498906?v=4&s=128","v":14,"gv":"4"},
+            {"id":"547ee664db8155e6700dac93","username":"viattik","displayName":"Andrei Sierkov","url":"/viattik","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/viattik","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/1625045?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/1625045?v=4&s=128","v":4,"gv":"4"},
+            {"id":"5482f9e9db8155e6700dc3df","username":"yavorsky","displayName":"Artem Yavorsky","url":"/yavorsky","avatarUrl":"https://avatars-02.gitter.im/gh/uv/4/yavorsky","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/1521229?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/1521229?v=4&s=128","v":2,"gv":"4"},
+            {"id":"549de793db8155e6700e3264","username":"AleshaOleg","displayName":"Oleh Aloshkin","url":"/AleshaOleg","avatarUrl":"https://avatars-02.gitter.im/gh/uv/4/AleshaOleg","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/1459899?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/1459899?v=4&s=128","v":17,"gv":"4"},
+            {"id":"54b913f6db8155e6700ebec3","username":"godcore","displayName":"Max","url":"/godcore","avatarUrl":"https://avatars-03.gitter.im/gh/uv/3/godcore","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/3994575?v=3&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/3994575?v=3&s=128","v":5,"gv":"3"},
+            {"id":"54ba5807db8155e6700ec530","username":"roman01la","displayName":"Roman Liutikov","url":"/roman01la","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/roman01la","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/1355501?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/1355501?v=4&s=128","role":"admin","v":16,"gv":"4"},
+            {"id":"54d8f73115522ed4b3dbcd2c","username":"tyv","displayName":"Yuri Tkachenko","url":"/tyv","avatarUrl":"https://avatars-01.gitter.im/gh/uv/4/tyv","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/122360?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/122360?v=4&s=128","v":4,"gv":"4"},
+            {"id":"54edee4515522ed4b3dc764f","username":"Keaws","displayName":"Vitalii Kalchuk","url":"/Keaws","avatarUrl":"https://avatars-03.gitter.im/gh/uv/4/Keaws","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/5289466?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/5289466?v=4&s=128","v":5,"gv":"4"},
+            {"id":"5503f6f115522ed4b3dd3ef1","username":"olgakorobeinyk","displayName":"Olga Korobeinyk","url":"/olgakorobeinyk","avatarUrl":"https://avatars-03.gitter.im/gh/uv/4/olgakorobeinyk","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/8451710?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/8451710?v=4&s=128","v":6,"gv":"4"},
+            {"id":"554cdc4415522ed4b3e01df3","username":"iamakulov","displayName":"Ivan Akulov","url":"/iamakulov","avatarUrl":"https://avatars-02.gitter.im/gh/uv/4/iamakulov","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/2953267?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/2953267?v=4&s=128","v":10,"gv":"4"},
+            {"id":"557e669a15522ed4b3e1e925","username":"shvaikalesh","displayName":"Aleksey Shvayka","url":"/shvaikalesh","avatarUrl":"https://avatars-02.gitter.im/gh/uv/4/shvaikalesh","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/5098878?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/5098878?v=4&s=128","role":"admin","v":17,"gv":"4"},
+            {"id":"55a24b065e0d51bd787b1e83","username":"MaStep92","displayName":"Maksym","url":"/MaStep92","avatarUrl":"https://avatars-01.gitter.im/gh/uv/3/MaStep92","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/12628448?v=3&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/12628448?v=3&s=128","v":19,"gv":"3"},
+            {"id":"55a7d3cb8a7b72f55c3f9a37","username":"Jantwel","displayName":"Vasyl Pahut","url":"/Jantwel","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/Jantwel","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/4988871?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/4988871?v=4&s=128","v":5,"gv":"4"},
+            {"id":"55ed798e0fc9f982beafe575","username":"Alimova","displayName":"Anna Alimova","url":"/Alimova","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/Alimova","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/3666460?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/3666460?v=4&s=128","v":14,"gv":"4"},
+            {"id":"56116672d33f749381a83f14","username":"oksiweb","displayName":"oksiweb","url":"/oksiweb","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/oksiweb","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/11834934?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/11834934?v=4&s=128","v":8,"gv":"4"},
+            {"id":"56432b0916b6c7089cba4c5b","username":"denar90","displayName":"Artem Denysov","url":"/denar90","avatarUrl":"https://avatars-04.gitter.im/gh/uv/3/denar90","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/6231516?v=3&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/6231516?v=3&s=128","role":"admin","v":4,"gv":"3"},
+            {"id":"56466c7316b6c7089cbaa5bc","username":"vityas-off","displayName":"Victor Prudniy","url":"/vityas-off","avatarUrl":"https://avatars-01.gitter.im/gh/uv/4/vityas-off","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/15840124?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/15840124?v=4&s=128","v":6,"gv":"4"},
+            {"id":"5661f7f516b6c7089cbd7116","username":"arzii","displayName":"arzi","url":"/arzii","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/arzii","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/12007642?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/12007642?v=4&s=128","v":4,"gv":"4"},
+            {"id":"567e7fca16b6c7089cc035bc","username":"cidre","displayName":"Maxim","url":"/cidre","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/cidre","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/11902029?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/11902029?v=4&s=128","v":6,"gv":"4"},
+            {"id":"568e2fc816b6c7089cc183f6","username":"zonzujiro","displayName":"zonzujiro","url":"/zonzujiro","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/zonzujiro","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/2997359?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/2997359?v=4&s=128","role":"admin","v":17,"gv":"4"},
+            {"id":"56ae16b9e610378809bf2210","username":"vitalikryzhenkous","displayName":"VitaliiRyzhenko","url":"/vitalikryzhenkous","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/vitalikryzhenkous","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/16985979?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/16985979?v=4&s=128","v":8,"gv":"4"},
+            {"id":"56afb24ae610378809bf5994","username":"lempiy","displayName":"Anton Lempiy","url":"/lempiy","avatarUrl":"https://avatars-02.gitter.im/gh/uv/4/lempiy","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/15019353?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/15019353?v=4&s=128","role":"admin","v":16,"gv":"4"},
+            {"id":"56fb7cd985d51f252abb8d1f","username":"samogray","displayName":"Samogray Olexandr","url":"/samogray","avatarUrl":"https://avatars-02.gitter.im/gh/uv/4/samogray","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/10684097?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/10684097?v=4&s=128","v":4,"gv":"4"},
+            {"id":"575471a9c43b8c601977fd7b","username":"krambertech","displayName":"Kateryna","url":"/krambertech","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/krambertech","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/10474869?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/10474869?v=4&s=128","v":5,"gv":"4"},
+            {"id":"575fb8f9c2f0db084a1dc207","username":"denysovkos","displayName":"denysovkos","url":"/denysovkos","avatarUrl":"https://avatars-03.gitter.im/gh/uv/4/denysovkos","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/16822145?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/16822145?v=4&s=128","v":5,"gv":"4"},
+            {"id":"57809d3dc2f0db084a222aaa","username":"Veligura","displayName":"Alex Veligura","url":"/Veligura","avatarUrl":"https://avatars-01.gitter.im/gh/uv/4/Veligura","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/12152609?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/12152609?v=4&s=128","v":51,"gv":"4"},
+            {"id":"57ed524e40f3a6eec0680e90","username":"annmedvid","displayName":"Anna Medvid","url":"/annmedvid","avatarUrl":"https://avatars-03.gitter.im/gh/uv/4/annmedvid","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/22518271?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/22518271?v=4&s=128","v":10,"gv":"4"},
+            {"id":"580cc825d73408ce4f303840","username":"hmlON","displayName":"Nikita Kholin","url":"/hmlON","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/hmlON","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/3994897?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/3994897?v=4&s=128","v":14,"gv":"4"},
+            {"id":"5822f59fd73408ce4f34b1f4","username":"shierby","displayName":"Alexandr","url":"/shierby","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/shierby","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/10604480?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/10604480?v=4&s=128","v":4,"gv":"4"},
+            {"id":"5825a31fd73408ce4f3526b6","username":"AMashoshyna","displayName":"Anastasiya Mashoshyna","url":"/AMashoshyna","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/AMashoshyna","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/17703790?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/17703790?v=4&s=128","role":"admin","v":30,"gv":"4"},
+            {"id":"5828b8e4d73408ce4f3595a1","username":"Umca","displayName":"Olya","url":"/Umca","avatarUrl":"https://avatars-03.gitter.im/gh/uv/4/Umca","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/16068957?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/16068957?v=4&s=128","v":6,"gv":"4"},
+            {"id":"58393f67d73408ce4f38b7f5","username":"mharyst","displayName":"Mykhailo Haryst","url":"/mharyst","avatarUrl":"https://avatars-03.gitter.im/gh/uv/4/mharyst","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/20457772?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/20457772?v=4&s=128","v":2,"gv":"4"},
+            {"id":"583be8b8d73408ce4f391e6b","username":"vyshkov","displayName":"Volodymyr Vyshko","url":"/vyshkov","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/vyshkov","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/7352031?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/7352031?v=4&s=128","v":4,"gv":"4"},
+            {"id":"58923acad73408ce4f477b81","username":"AlinaLukyan","displayName":"alinalukian","url":"/AlinaLukyan","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/AlinaLukyan","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/6886252?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/6886252?v=4&s=128","v":4,"gv":"4"},
+            {"id":"589d9c8dd73408ce4f4962f2","username":"Efimenko","displayName":"Efimenko","url":"/Efimenko","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/Efimenko","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/12701768?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/12701768?v=4&s=128","v":1,"gv":"4"},
+            {"id":"58b32badd73408ce4f4d0720","username":"LiliVia","displayName":"Lilia Via","url":"/LiliVia","avatarUrl":"https://avatars-01.gitter.im/gh/uv/4/LiliVia","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/25428023?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/25428023?v=4&s=128","v":7,"gv":"4"},
+            {"id":"58d610e7d73408ce4f538927","username":"mgdskr","displayName":"Oleksandr Maksymenko","url":"/mgdskr","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/mgdskr","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/3216262?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/3216262?v=4&s=128","v":2,"gv":"4"},
+            {"id":"5919d0ebd73408ce4f5fb30a","username":"viktor-yakubiv","displayName":"Viktor Yakubiv","url":"/viktor-yakubiv","avatarUrl":"https://avatars-01.gitter.im/gh/uv/4/viktor-yakubiv","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/8440244?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/8440244?v=4&s=128","v":11,"gv":"4"},
+            {"id":"59638d07d73408ce4f6c73f8","username":"andrey-gnl","displayName":"Andrey","url":"/andrey-gnl","avatarUrl":"https://avatars-04.gitter.im/gh/uv/3/andrey-gnl","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/6069151?v=3&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/6069151?v=3&s=128","v":1,"gv":"3"},
+            {"id":"5988b5c6d73408ce4f70707a","username":"Br3d89_twitter","displayName":"Константин","url":"/Br3d89_twitter","avatarUrl":"https://avatars-02.gitter.im/g/u/Br3d89_twitter","avatarUrlSmall":"https://pbs.twimg.com/profile_images/707119908/x_f31cedfb_bigger.jpg","avatarUrlMedium":"https://pbs.twimg.com/profile_images/707119908/x_f31cedfb.jpg"},
+            {"id":"599b41bbd73408ce4f725b7b","username":"VladiSylvan","displayName":"VladiSylvan","url":"/VladiSylvan","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/VladiSylvan","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/30474278?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/30474278?v=4&s=128","v":2,"gv":"4"},
+            {"id":"59aec454d73408ce4f746aa2","username":"Nodman","displayName":"Dmitriy","url":"/Nodman","avatarUrl":"https://avatars-01.gitter.im/gh/uv/4/Nodman","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/2991708?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/2991708?v=4&s=128","v":6,"gv":"4"},
+            {"id":"59bd0dbdd73408ce4f7601ef","username":"KseniiaL","displayName":"Kseniia Leschenko","url":"/KseniiaL","avatarUrl":"https://avatars-01.gitter.im/gh/uv/4/KseniiaL","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/23457879?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/23457879?v=4&s=128","v":2,"gv":"4"},
+            {"id":"59bd0f92d73408ce4f760224","username":"SashaZhardetskaya","displayName":"Sasha Zhardetskaya","url":"/SashaZhardetskaya","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/SashaZhardetskaya","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/17475281?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/17475281?v=4&s=128","v":4,"gv":"4"},
+            {"id":"59bd3f52d73408ce4f76065b","username":"leannaweller","displayName":"Leanna","url":"/leannaweller","avatarUrl":"https://avatars-03.gitter.im/gh/uv/4/leannaweller","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/21079504?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/21079504?v=4&s=128","v":3,"gv":"4"},
+            {"id":"59bd5ad8d73408ce4f7608b6","username":"xStoneriderx","displayName":"xStoneriderx","url":"/xStoneriderx","avatarUrl":"https://avatars-04.gitter.im/gh/uv/4/xStoneriderx","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/14232792?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/14232792?v=4&s=128","v":4,"gv":"4"},
+            {"id":"59bd5b46d73408ce4f7608d5","username":"PavlyukVadim","displayName":"Vadim ","url":"/PavlyukVadim","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/PavlyukVadim","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/18642304?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/18642304?v=4&s=128","v":1,"gv":"4"},
+            {"id":"59bd6981d73408ce4f760a54","username":"den_logo_twitter","displayName":"Den","url":"/den_logo_twitter","avatarUrl":"https://avatars-04.gitter.im/g/u/den_logo_twitter","avatarUrlSmall":"https://pbs.twimg.com/profile_images/894910173386604544/8gUVgwuC_bigger.jpg","avatarUrlMedium":"https://pbs.twimg.com/profile_images/894910173386604544/8gUVgwuC.jpg"},
+            {"id":"59be222dd73408ce4f761583","username":"charmingelle","displayName":"charmingelle","url":"/charmingelle","avatarUrl":"https://avatars-01.gitter.im/gh/uv/4/charmingelle","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/19636949?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/19636949?v=4&s=128","v":1,"gv":"4"},
+            {"id":"59be99b1d73408ce4f761f44","username":"mykytasamokish","displayName":"Mykyta Samokish","url":"/mykytasamokish","avatarUrl":"https://avatars-02.gitter.im/gh/uv/4/mykytasamokish","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/10107478?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/10107478?v=4&s=128","v":3,"gv":"4"},
+            {"id":"59c37c37d73408ce4f76b8cc","username":"idzhola","displayName":"idzhola","url":"/idzhola","avatarUrl":"https://avatars-05.gitter.im/gh/uv/4/idzhola","avatarUrlSmall":"https://avatars0.githubusercontent.com/u/8724193?v=4&s=60","avatarUrlMedium":"https://avatars0.githubusercontent.com/u/8724193?v=4&s=128","gv":"4"},
+            {"id":"59c4cae9d73408ce4f76e1f0","username":"tsaputo","displayName":"tsaputo","url":"/tsaputo","avatarUrl":"https://avatars-03.gitter.im/gh/uv/4/tsaputo","avatarUrlSmall":"https://avatars1.githubusercontent.com/u/9536093?v=4&s=60","avatarUrlMedium":"https://avatars1.githubusercontent.com/u/9536093?v=4&s=128","gv":"4"},
+            {"id":"59cfdbbcd73408ce4f780ec7","username":"somegalt","displayName":"Bohdan Galt","url":"/somegalt","avatarUrl":"https://avatars-02.gitter.im/gh/uv/4/somegalt","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/30749782?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/30749782?v=4&s=128","v":2,"gv":"4"},
+            {"id":"59f2e817d73408ce4f7bf4ec","username":"straybro","displayName":"German Malinovsky","url":"/straybro","avatarUrl":"https://avatars-02.gitter.im/gh/uv/4/straybro","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/3736897?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/3736897?v=4&s=128","gv":"4"},
+            {"id":"5a04451fd73408ce4f7dde61","username":"bohdangalt","displayName":"Bohdan Galt","url":"/bohdangalt","avatarUrl":"https://avatars-02.gitter.im/gh/uv/4/bohdangalt","avatarUrlSmall":"https://avatars2.githubusercontent.com/u/33498386?v=4&s=60","avatarUrlMedium":"https://avatars2.githubusercontent.com/u/33498386?v=4&s=128","v":1,"gv":"4"}
+        ];
+
+        class Profile extends React.Component {
+            render() {
+                const { username, avatarUrl, displayName, } = this.props;
+
+                return (
+                    <div className="profile">
+                        <img
+                            className="profile-avatar"
+                            src={avatarUrl}
+                            alt={displayName}
+                        />
+
+                        <div className="profile-info">
+                            <div className="profile-name">{displayName}</div>
+                            <a href={`https://github.com/${username}`}>Go to profile</a>
+                        </div>
+                    </div>
+                );
+            }
+        }
+
+        class App extends React.Component {
             constructor() {
                 super();
 
                 this.state = {
-                    name: ''
+                    search: ''
                 };
 
-                this.handleChangeName = this.handleChangeName.bind(this);
+                this.handleSearch = this.handleSearch.bind(this);
             }
 
-            handleChangeName(e) {
-                this.setState({ name: e.target.value });
+            handleSearch(e) {
+                this.setState({ search: e.target.value });
             }
 
             render() {
-                const { name } = this.state;
+                const { search } = this.state;
+
+                const displayedProfiles = profiles.filter(profile =>
+                    `${profile.username} ${profile.displayName}`.toLowerCase().includes(search.toLowerCase())
+                );
 
                 return (
-                    <div>
+                    <div className="app">
                         <input
                             type="text"
-                            placeholder="Enter your name..."
-                            value={name}
-                            onChange={this.handleChangeName}
+                            placeholder="Search..."
+                            value={search}
+                            onChange={this.handleSearch}
                         />
 
-                        <h1>Hello, {name || 'stranger'}!</h1>
+                        {
+                            displayedProfiles.map(profile =>
+                                <Profile key={profile.id} {...profile} />
+                            )
+                        }
                     </div>
                 );
             }
         }
 
         ReactDOM.render(
-            <Hello />,
+            <App />,
             document.getElementById('root')
         );
     </script>
