@@ -1,5 +1,20 @@
 # React Lesson
 
+### Полезности
+
+- [Документация React](https://reactjs.org/docs/hello-world.html)
+- [React Components, Elements, and Instances](https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html)
+- [События](https://reactjs.org/docs/handling-events.html)
+- [Lists and keys](https://reactjs.org/docs/lists-and-keys.html)
+- [Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
+- [JSX](https://reactjs.org/docs/jsx-in-depth.html)
+- [Reconciliation](https://reactjs.org/docs/reconciliation.html)
+- [Context](https://reactjs.org/docs/context.html)
+- [HOC](https://reactjs.org/docs/higher-order-components.html)
+- [Create React App](https://github.com/facebookincubator/create-react-app)
+- [Мой доклад про перформанс в React](https://www.youtube.com/watch?v=5pIUicKWyrQ)
+- [React Kyiv](https://www.meetup.com/Kyiv-ReactJS-Meetup/)
+
 ### Homework
 
 #### 1. Напишите компонент для отображения статьи
