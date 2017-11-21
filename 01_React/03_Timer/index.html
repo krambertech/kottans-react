@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World</title>
+
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class Timer extends React.Component {
+            constructor() {
+                super();
+
+                this.state = {
+                    secondsElapsed: 0
+                };
+                this.tick = this.tick.bind(this);
+            }
+
+            componentDidMount() {
+                this.timer = setInterval(this.tick, 1000);
+            }
+
+            tick() {
+                this.setState({ secondsElapsed: this.state.secondsElapsed + 1 });
+            }
+
+            componentWillUnmount() {
+                clearInterval(this.timer);
+            }
+
+            render() {
+                return (
+                    <div> Уже прошло {this.state.secondsElapsed} секунд </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <Timer />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>
