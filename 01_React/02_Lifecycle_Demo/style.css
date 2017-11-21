@@ -1,0 +1,79 @@
+body {
+    font-family: sans-serif;
+}
+
+.container {
+    display: flex;
+}
+
+.App {
+    margin: 20px;
+    width: 250px;
+}
+
+.button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#monitor {
+    max-height: 500px;
+    overflow: auto;
+    list-style-type: none;
+    width: 300px;
+}
+
+#monitor li {
+    display: block;
+    padding: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-radius: 4px;
+}
+
+#monitor li.render {
+    background-color: #FFC107;
+    color: white;
+}
+
+#monitor li.constructor {
+    background-color: #2196F3;
+    color: white;
+}
+
+#monitor li.componentWillMount {
+    background-color: #4CAF50;
+    color: white;
+}
+
+#monitor li.componentDidMount {
+    background-color: #F44336;
+    color: white;
+}
+
+#monitor li.componentWillReceiveProps {
+    background-color: #3F51B5;
+    color: white;
+}
+
+#monitor li.componentWillUpdate {
+    background-color: #E91E63;
+    color: white;
+}
+
+#monitor li.componentDidUpdate {
+    background-color: #00BCD4;
+    color: white;
+}
+
+#monitor li.shouldComponentUpdate {
+    background-color: #9C27B0;
+    color: white;
+}
+
+#monitor li.componentWillUnmount {
+    background-color: #795548;
+    color: white;
+}

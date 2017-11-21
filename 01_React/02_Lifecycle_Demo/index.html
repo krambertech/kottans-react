@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lifecycle demo</title>
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id='mount-point'></div>
+        <ul id='monitor'></ul>
+    </div>
+
+    <script type="text/babel">
+        function printOnPage(methodName) {
+            const ul = document.getElementById('monitor');
+            const li = document.createElement('li');
+            li.appendChild(document.createTextNode(methodName));
+            li.className = methodName;
+            ul.appendChild(li);
+            ul.scrollTop = ul.scrollHeight;
+        }
+
+        class App extends React.Component {
+            constructor() {
+                super();
+
+                this.state = {
+                    id: 0,
+                    mounted: false
+                };
+            }
+
+            render() {
+                return (
+                    <div className='App'>
+                        {
+                            this.state.mounted
+                                ? <Component id={this.state.id} />
+                                : false
+                        }
+                        {
+                            this.state.mounted
+                                ?
+                                    <button
+                                        className="button"
+                                        onClick={() => this.setState({ id: this.state.id + 1 })}
+                                    >
+                                        Update props
+                                    </button>
+                                :
+                                    false
+                        }
+                        <button
+                            className="button"
+                            onClick={() => this.setState({ mounted: !this.state.mounted })}
+                        >
+                            {this.state.mounted ? 'Unmount Component' : 'Mount Component'}
+                        </button>
+                    </div>
+                );
+            }
+        }
+
+        class Component extends React.Component {
+            constructor() {
+                super();
+                printOnPage('constructor');
+
+                this.state = {
+                    id: 0,
+                };
+            }
+
+            componentWillMount() {
+                printOnPage('componentWillMount');
+            }
+
+            componentDidMount() {
+                printOnPage('componentDidMount');
+            }
+
+            componentWillReceiveProps() {
+                printOnPage('componentWillReceiveProps');
+            }
+
+            componentWillUpdate() {
+                printOnPage('componentWillUpdate');
+            }
+
+            componentDidUpdate() {
+                printOnPage('componentDidUpdate');
+            }
+
+            shouldComponentUpdate(nextProps) {
+                printOnPage('shouldComponentUpdate');
+                return true;
+            }
+
+            componentWillUnmount() {
+                printOnPage('componentWillUnmount');
+            }
+
+            render() {
+                printOnPage('render');
+                return (
+                    <div>
+                        <div>Component state : {this.state.id} </div>
+                        <div>Component props : {this.props.id} </div>
+                        <button className="button" onClick={() => this.setState({id: this.state.id + 1})}>
+                            Update state
+                        </button>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('mount-point')
+        );
+    </script>
+</body>
+</html>
