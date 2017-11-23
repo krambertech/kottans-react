@@ -1,0 +1,11 @@
+.Todo {
+    padding: 16px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.Todo--completed {
+    text-decoration: line-through;
+    font-style: italic;
+    color: lightgrey;
+}
