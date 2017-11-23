@@ -2,8 +2,15 @@
 
 ### Полезности
 
-- bal
-- bla
+- [Документация Redux](http://redux.js.org/)
+- [Бесплатный видео-курс по Redux](https://egghead.io/courses/getting-started-with-redux)
+- [Cтатья про Flux](http://blog.andrewray.me/flux-for-stupid-people/)
+- [Документация Redux](http://redux.js.org/)
+- [Бесплатный видео-курс по Redux 2](https://egghead.io/courses/building-react-applications-with-idiomatic-redux)
+- [redux-logger](https://github.com/evgenyrodionov/redux-logger)
+- [Redux DevTools extension](https://github.com/zalmoxisus/redux-devtools-extension)
+- [redux-thunk](https://github.com/gaearon/redux-thunk)
+- [Presentational and Container Components](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.48w9612ir)
 
 ### Homework
 
@@ -69,5 +76,3 @@
 7. Реализуйте оптимистичное выполнение задач (т.е. они должны отмечаться как выполненные раньше, чем фактически прийдет ответ с сервера)
 
 ![1](_assets/Tasks.png)
-
-
