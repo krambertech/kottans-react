@@ -1,5 +1,7 @@
 # React Lesson
 
+**[ЗАПИСЬ ЗАНЯТИЯ (21.11)](https://youtu.be/kiaE4osEdYA)**
+
 ### Полезности
 
 - [Документация React](https://reactjs.org/docs/hello-world.html)
